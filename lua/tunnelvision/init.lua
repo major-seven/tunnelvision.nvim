@@ -1,7 +1,7 @@
-local variants = require("rasmus.colors")
-local cfg = require("rasmus.config").config
+local variants = require("tunnelvision.colors")
+local cfg = require("tunnelvision.config").config
 local c = variants[cfg.variant]
-local utils = require("rasmus.utils")
+local utils = require("tunnelvision.utils")
 local M = {}
 
 local set_terminal_colors = function()
@@ -29,31 +29,31 @@ local set_groups = function()
   local groups = {
     -- Base
     -- Editor highlight groups
-    Normal = { fg = c.fg, bg = cfg.transparent and c.none or c.bg }, -- normal text and background color
-    NormalNC = { fg = c.fg, bg = cfg.transparent and c.none or c.bg }, -- normal text in non-current windows
-    SignColumn = { fg = c.fg, bg = cfg.transparent and c.none or c.bg }, -- column where signs are displayed
-    EndOfBuffer = { fg = c.gray03 }, -- ~ lines at the end of a buffer
-    NormalFloat = { fg = c.fg, bg = c.gray02 }, -- normal text and background color for floating windows
-    FloatBorder = { fg = c.blue, bg = c.gray02 },
-    ColorColumn = { fg = c.none, bg = c.gray01 }, --  used for the columns set with 'colorcolumn'
+    Normal = { fg = c.fg01, bg = cfg.transparent and c.none or c.bg01 }, -- normal text and background color
+    NormalNC = { fg = c.fg01, bg = cfg.transparent and c.none or c.bg01 }, -- normal text in non-current windows
+    SignColumn = { fg = c.fg04, bg = cfg.transparent and c.none or c.bg01 }, -- column where signs are displayed
+    EndOfBuffer = { fg = c.fg04 }, -- ~ lines at the end of a buffer
+    NormalFloat = { fg = c.fg01, bg = c.bg }, -- normal text and background color for floating windows
+    FloatBorder = { fg = c.red, bg = c.bg },
+    ColorColumn = { fg = c.fg02, bg = c.bg02 }, --  used for the columns set with 'colorcolumn'
     Conceal = { fg = c.gray05 }, -- placeholder characters substituted for concealed text (see 'conceallevel')
-    Cursor = { fg = c.cyan, bg = c.none, style = "reverse" }, -- the character under the cursor
+    Cursor = { fg = c.fg01, bg = c.none, style = "reverse" }, -- the character under the cursor
     CursorIM = { fg = c.cyan, bg = c.none, style = "reverse" }, -- like Cursor, but used when in IME mode
-    Directory = { fg = c.blue, bg = c.none, style = "bold" }, -- directory names (and other special names in listings)
-    DiffAdd = { fg = c.bright_green, bg = c.none, style = "reverse" }, -- diff mode: Added line
-    DiffChange = { fg = c.bright_blue, bg = c.none, style = "reverse" }, --  diff mode: Changed line
-    DiffDelete = { fg = c.bright_red, bg = c.none, style = "reverse" }, -- diff mode: Deleted line
-    DiffText = { fg = c.fg, bg = c.none, style = "reverse" }, -- diff mode: Changed text within a changed line
+    Directory = { fg = c.fg02, bg = c.none, style = "bold" }, -- directory names (and other special names in listings)
+    DiffAdd = { fg = c.green, bg = c.none, style = "reverse" }, -- diff mode: Added line
+    DiffChange = { fg = c.blue, bg = c.none, style = "reverse" }, --  diff mode: Changed line
+    DiffDelete = { fg = c.red, bg = c.none, style = "reverse" }, -- diff mode: Deleted line
+    DiffText = { fg = c.fg02, bg = c.none, style = "reverse" }, -- diff mode: Changed text within a changed line
     ErrorMsg = { fg = c.red }, -- error messages
-    Folded = { fg = c.gray05, bg = c.none, style = "italic" },
+    Folded = { fg = c.fg04, bg = c.none, style = "italic" },
     FoldColumn = { fg = c.blue },
     IncSearch = { style = "reverse" },
-    LineNr = { fg = c.gray05 },
-    CursorLineNr = { fg = c.gray07 },
-    MatchParen = { fg = c.yellow, style = "bold" },
-    ModeMsg = { fg = c.cyan, style = "bold" },
-    MoreMsg = { fg = c.cyan, style = "bold" },
-    NonText = { fg = c.gray03 },
+    LineNr = { fg = c.fg04 },
+    CursorLineNr = { fg = c.fg03 },
+    MatchParen = { fg = c.fg01, style = "bold" },
+    ModeMsg = { fg = c.violet3, style = "bold" },
+    MoreMsg = { fg = c.violet3, style = "bold" },
+    NonText = { fg = c.fg03 },
     Pmenu = { fg = c.gray07, bg = c.gray02 },
     PmenuSel = { fg = c.bg, bg = c.gray06 },
     PmenuSbar = { fg = c.fg, bg = c.gray02 },
@@ -65,12 +65,12 @@ local set_groups = function()
     SpecialKey = { fg = c.gray03 },
     SpellBad = { fg = c.red, bg = c.none, style = "italic,undercurl" },
     SpellCap = { fg = c.blue, bg = c.none, style = "italic,undercurl" },
-    SpellLocal = { fg = c.cyan, bg = c.none, style = "italic,undercurl" },
-    SpellRare = { fg = c.cyan, bg = c.none, style = "italic,undercurl" },
-    StatusLine = { fg = c.gray07, bg = c.gray01 },
-    StatusLineNC = { fg = c.gray06, bg = c.gray01 },
-    StatusLineTerm = { fg = c.gray07, bg = c.gray01 },
-    StatusLineTermNC = { fg = c.gray07, bg = c.gray01 },
+    SpellLocal = { fg = c.white, bg = c.none, style = "italic,undercurl" },
+    SpellRare = { fg = c.white, bg = c.none, style = "italic,undercurl" },
+    StatusLine = { fg = c.bg04, bg = c.gray01 },
+    StatusLineNC = { fg = c.bg04, bg = c.gray01 },
+    StatusLineTerm = { fg = c.bg04, bg = c.gray01 },
+    StatusLineTermNC = { fg = c.bg04, bg = c.gray01 },
     TabLineFill = { fg = c.gray05, bg = c.gray01 },
     TablineSel = { fg = c.bg, bg = c.gray07 },
     Tabline = { fg = c.gray05 },
@@ -79,50 +79,50 @@ local set_groups = function()
     VisualNOS = { fg = c.none, bg = c.gray03 },
     WarningMsg = { fg = c.yellow, style = "bold" },
     WildMenu = { fg = c.bg, bg = c.blue, style = "bold" },
-    CursorColumn = { fg = c.none, bg = c.gray02 },
-    CursorLine = { fg = c.none, bg = c.gray01 },
-    ToolbarLine = { fg = c.fg, bg = c.gray01 },
+    CursorColumn = { fg = c.none, bg = c.bg02 },
+    CursorLine = { fg = c.none, bg = c.bg03 },
+    ToolbarLine = { fg = c.fg, bg = c.bg04 },
     ToolbarButton = { fg = c.fg, bg = c.none, style = "bold" },
-    NormalMode = { fg = c.cyan, bg = c.none, style = "reverse" },
-    InsertMode = { fg = c.green, bg = c.none, style = "reverse" },
-    VisualMode = { fg = c.cyan, bg = c.none, style = "reverse" },
-    VertSplit = { fg = c.gray02 },
-    CommandMode = { fg = c.gray05, bg = c.none, style = "reverse" },
+    NormalMode = { fg = c.blue, bg = c.bg01, style = "reverse" },
+    InsertMode = { fg = c.green, bg = c.bg01, style = "reverse" },
+    VisualMode = { fg = c.white, bg = c.none, style = "reverse" },
+    VertSplit = { fg = c.fg05 },
+    CommandMode = { fg = c.fg02, bg = c.none, style = "reverse" },
     Warnings = { fg = c.yellow },
     healthError = { fg = c.red },
     healthSuccess = { fg = c.green },
     healthWarning = { fg = c.yellow },
     --common
-    Type = { fg = c.cyan }, -- int, long, char, etc.
-    StorageClass = { fg = c.cyan }, -- static, register, volatile, etc.
-    Structure = { fg = c.fg }, -- struct, union, enum, etc.
-    Constant = { fg = c.cyan }, -- any constant
-    Comment = { fg = c.gray05, bg = c.none, style = cfg.comment_style }, -- italic comments
-    Conditional = { fg = c.blue, bg = c.none, style = cfg.keyword_style }, -- italic if, then, else, endif, switch, etc.
-    Keyword = { fg = c.blue, bg = c.none, style = cfg.keyword_style }, -- italic for, do, while, etc.
-    Repeat = { fg = c.blue, bg = c.none, style = cfg.keyword_style }, -- italic any other keyword
-    Boolean = { fg = c.cyan, bg = c.none, style = cfg.boolean_style }, -- true , false
-    Function = { fg = c.blue, bg = c.none, style = cfg.function_style },
-    Identifier = { fg = c.blue, bg = c.none }, -- any variable name
-    String = { fg = c.cyan, bg = c.none }, -- Any string
-    Character = { fg = c.cyan }, -- any character constant: 'c', '\n'
-    Number = { fg = c.cyan }, -- a number constant: 5
-    Float = { fg = c.cyan }, -- a floating point constant: 2.3e10
-    Statement = { fg = c.blue }, -- any statement
-    Label = { fg = c.cyan }, -- case, default, etc.
-    Operator = { fg = c.yellow }, -- sizeof", "+", "*", etc.
-    Exception = { fg = c.yellow }, -- try, catch, throw
+    Type = { fg = c.violet }, -- int, long, char, etc.
+    StorageClass = { fg = c.violet3 }, -- static, register, volatile, etc.
+    Structure = { fg = c.violet3 }, -- struct, union, enum, etc.
+    Constant = { fg = c.fg02, style = "bold" }, -- any constant
+    Comment = { fg = c.fg05, bg = c.none, style = cfg.comment_style }, -- italic comments
+    Conditional = { fg = c.violet3, bg = c.none, style = cfg.keyword_style }, -- italic if, then, else, endif, switch, etc.
+    Keyword = { fg = c.violet3, bg = c.none, style = cfg.keyword_style }, -- italic for, do, while, etc.
+    Repeat = { fg = c.violet, bg = c.none, style = cfg.keyword_style }, -- italic any other keyword
+    Boolean = { fg = c.violet2, bg = c.none, style = cfg.boolean_style }, -- true , false
+    Function = { fg = c.fg01, bg = c.none, style = cfg.function_style },
+    Identifier = { fg = c.fg02, bg = c.none }, -- any variable name
+    String = { fg = c.fg04, bg = c.none }, -- Any string
+    Character = { fg = c.fg02, style="bold" }, -- any character constant: 'c', '\n'
+    Number = { fg = c.violet2 }, -- a number constant: 5
+    Float = { fg = c.violet2 }, -- a floating point constant: 2.3e10
+    Statement = { fg = c.fg01 }, -- any statement
+    Label = { fg = c.fg01 }, -- case, default, etc.
+    Operator = { fg = c.violet }, -- sizeof", "+", "*", etc.
+    Exception = { fg = c.violet3 }, -- try, catch, throw
     PreProc = { fg = c.red }, -- generic Preprocessor
-    Include = { fg = c.blue }, -- preprocessor #include
-    Define = { fg = c.cyan }, -- preprocessor #define
-    Macro = { fg = c.blue }, -- same as Define
-    Typedef = { fg = c.cyan }, -- A typedef
-    PreCondit = { fg = c.cyan }, -- preprocessor #if, #else, #endif, etc.
-    Special = { fg = c.blue, bg = c.none, "italic" }, -- any special symbol
-    SpecialChar = { fg = c.cyan }, -- special character in a constant
+    Include = { fg = c.violet3 }, -- preprocessor #include
+    Define = { fg = c.violet3 }, -- preprocessor #define
+    Macro = { fg = c.violet3 }, -- same as Define
+    Typedef = { fg = c.violet3 }, -- A typedef
+    PreCondit = { fg = c.violet3 }, -- preprocessor #if, #else, #endif, etc.
+    Special = { fg = c.violet, bg = c.none, "italic" }, -- any special symbol
+    SpecialChar = { fg = c.violet }, -- special character in a constant
     Tag = { fg = c.yellow }, -- you can use CTRL-] on this
-    Delimiter = { fg = c.gray07 }, -- character that needs attention like , or .
-    SpecialComment = { fg = c.blue }, -- special things inside a comment
+    Delimiter = { fg = c.fg01 }, -- character that needs attention like , or .
+    SpecialComment = { fg = c.violet }, -- special things inside a comment
     Debug = { fg = c.red }, -- debugging statements
     Underlined = { fg = c.cyan, bg = c.none, style = "underline" }, -- text that stands out, HTML links
     Ignore = { fg = c.gray07 }, -- left blank, hidden
@@ -179,30 +179,30 @@ local set_groups = function()
     TSAttribute = { fg = c.fg }, -- (unstable) TODO: docs
     TSBoolean = { fg = c.cyan, bg = c.none, style = cfg.boolean_style }, -- true or false
     TSCharacter = { fg = c.cyan }, -- For characters.
-    TSComment = { fg = c.gray05, bg = c.none, style = cfg.comment_style }, -- For comment blocks.
+    TSComment = { fg = c.bg05, bg = c.none, style = cfg.comment_style }, -- For comment blocks.
     TSConditional = { fg = c.blue, style = cfg.keyword_style }, -- For keywords related to conditionnals.
     TSConstant = { fg = c.fg }, -- For constants
-    TSConstBuiltin = { fg = c.cyan, style = "italic" }, -- For constants that are built in the language: `nil` in Lua.
-    TSConstMacro = { fg = c.cyan }, -- For constants that are defined by macros: `NULL` in C.
-    TSConstructor = { fg = c.gray07 }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
+    TSConstBuiltin = { fg = c.violet2, style = "italic" }, -- For constants that are built in the language: `nil` in Lua.
+    TSConstMacro = { fg = c.violet2 }, -- For constants that are defined by macros: `NULL` in C.
+    TSConstructor = { fg = c.fg03 }, -- For constructor calls and definitions: `= { }` in Lua, and Java constructors.
     TSError = { fg = c.red }, -- For syntax/parser errors.
     TSException = { fg = c.yellow }, -- For exception related keywords.
-    TSField = { fg = c.cyan }, -- For fields.
-    TSFloat = { fg = c.cyan }, -- For floats.
-    TSFunction = { fg = c.fg, style = cfg.function_style }, -- For fuction (calls and definitions).
-    TSFuncBuiltin = { fg = c.fg, style = cfg.function_style }, -- For builtin functions: `table.insert` in Lua.
-    TSFuncMacro = { fg = c.blue }, -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
-    TSInclude = { fg = c.blue, style = "italic" }, -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
-    TSKeyword = { fg = c.blue, style = cfg.keyword_style }, -- For keywords that don't fall in previous categories.
-    TSKeywordFunction = { fg = c.blue, style = cfg.function_style }, -- For keywords used to define a fuction.
-    TSKeywordOperator = { fg = c.yellow }, -- For operators that are English words, e.g. `and`, `as`, `or`.
-    TSKeywordReturn = { fg = c.blue, style = cfg.keyword_style }, -- For the `return` and `yield` keywords.
-    TSLabel = { fg = c.cyan }, -- For labels: `label:` in C and `:label:` in Lua.
-    TSMethod = { fg = c.bright_blue, style = cfg.function_style }, -- For method calls and definitions.
-    TSNamespace = { fg = c.blue }, -- For identifiers referring to modules and namespaces.
+    TSField = { fg = c.fg01 }, -- For fields.
+    TSFloat = { fg = c.fg01 }, -- For floats.
+    TSFunction = { fg = c.violet3, style = cfg.function_style }, -- For fuction (calls and definitions).
+    TSFuncBuiltin = { fg = c.fg01, style = cfg.function_style }, -- For builtin functions: `table.insert` in Lua.
+    TSFuncMacro = { fg = c.violet3 }, -- For macro defined fuctions (calls and definitions): each `macro_rules` in Rust.
+    TSInclude = { fg = c.violet3, style = "italic" }, -- For includes: `#include` in C, `use` or `extern crate` in Rust, or `require` in Lua.
+    TSKeyword = { fg = c.violet3, style = cfg.keyword_style }, -- For keywords that don't fall in previous categories.
+    TSKeywordFunction = { fg = c.violet3, style = cfg.function_style }, -- For keywords used to define a fuction.
+    TSKeywordOperator = { fg = c.violet3 }, -- For operators that are English words, e.g. `and`, `as`, `or`.
+    TSKeywordReturn = { fg = c.violet3, style = cfg.keyword_style }, -- For the `return` and `yield` keywords.
+    TSLabel = { fg = c.violet3 }, -- For labels: `label:` in C and `:label:` in Lua.
+    TSMethod = { fg = c.violet3, style = cfg.function_style }, -- For method calls and definitions.
+    TSNamespace = { fg = c.violet3 }, -- For identifiers referring to modules and namespaces.
     -- TSNone = {}, -- No highlighting. Don't change the values of this highlight group.
-    TSNumber = { fg = c.cyan }, -- For all numbers
-    TSOperator = { fg = c.yellow }, -- For any operator: `+`, but also `->` and `*` in C.
+    TSNumber = { fg = c.violet2 }, -- For all numbers
+    TSOperator = { fg = c.violet }, -- For any operator: `+`, but also `->` and `*` in C.
     TSParameter = { fg = c.fg }, -- For parameters of a function.
     TSParameterReference = { fg = c.fg }, -- For references to parameters of a function.
     TSProperty = { fg = c.blue }, -- Same as `TSField`.
@@ -233,10 +233,10 @@ local set_groups = function()
     TSNote = { fg = c.blue, style = "italic" }, -- Text representation of an informational note.
     TSWarning = { fg = c.yellow, style = "italic" }, -- Text representation of a warning note.
     TSDanger = { fg = c.red, style = "italic" }, -- Text representation of a danger note.
-    TSType = { fg = c.fg }, -- For types.
-    TSTypeBuiltin = { fg = c.blue }, -- For builtin types.
-    TSVariable = { fg = c.fg, style = cfg.variable_style }, -- Any variable name that does not have another highlight.
-    TSVariableBuiltin = { fg = c.yellow, style = cfg.variable_style }, -- Variable names that are defined by the languages, like `this` or `self`.
+    TSType = { fg = c.fg01 }, -- For types.
+    TSTypeBuiltin = { fg = c.fg01 }, -- For builtin types.
+    TSVariable = { fg = c.fg02, style = cfg.variable_style }, -- Any variable name that does not have another highlight.
+    TSVariableBuiltin = { fg = c.violet02, style = cfg.variable_style }, -- Variable names that are defined by the languages, like `this` or `self`.
     -- highlight groups for the native LSP client
     LspReferenceText = { fg = c.bg, bg = c.magenta }, -- used for highlighting "text" references
     LspReferenceRead = { fg = c.bg, bg = c.magenta }, -- used for highlighting "read" references
@@ -245,11 +245,11 @@ local set_groups = function()
     DiagnosticError = { fg = c.red }, -- base highlight group for "Error"
     DiagnosticWarn = { fg = c.yellow }, -- base highlight group for "Warning"
     DiagnosticInfo = { fg = c.blue }, -- base highlight group from "Information"
-    DiagnosticHint = { fg = c.cyan }, -- base highlight group for "Hint"
+    DiagnosticHint = { fg = c.white }, -- base highlight group for "Hint"
     DiagnosticUnderlineError = { fg = c.red, style = "undercurl", sp = c.red }, -- used to underline "Error" diagnostics.
     DiagnosticUnderlineWarn = { fg = c.yellow, style = "undercurl", sp = c.yellow }, -- used to underline "Warning" diagnostics.
     DiagnosticUnderlineInfo = { fg = c.blue, style = "undercurl", sp = c.blue }, -- used to underline "Information" diagnostics.
-    DiagnosticUnderlineHint = { fg = c.cyan, style = "undercurl", sp = c.cyan }, -- used to underline "Hint" diagnostics.
+    DiagnosticUnderlineHint = { fg = c.white, style = "undercurl", sp = c.white }, -- used to underline "Hint" diagnostics.
     -- Diagnostics (old)
     LspDiagnosticsDefaultError = { fg = c.red }, -- used for "Error" diagnostic virtual text
     LspDiagnosticsSignError = { fg = c.red }, -- used for "Error" diagnostic signs in sign column
@@ -266,35 +266,35 @@ local set_groups = function()
     LspDiagnosticsFloatingInformation = { fg = c.blue, style = "bold" }, -- used for "Information" diagnostic messages in the diagnostics float
     LspDiagnosticsVirtualTextInformation = { fg = c.blue, style = "bold" }, -- Virtual text "Information"
     LspDiagnosticsUnderlineInformation = { fg = c.blue, style = "undercurl", sp = c.blue }, -- used to underline "Information" diagnostics.
-    LspDiagnosticsDefaultHint = { fg = c.cyan }, -- used for "Hint" diagnostic virtual text
-    LspDiagnosticsSignHint = { fg = c.cyan }, -- used for "Hint" diagnostic signs in sign column
-    LspDiagnosticsFloatingHint = { fg = c.cyan, style = "bold" }, -- used for "Hint" diagnostic messages in the diagnostics float
-    LspDiagnosticsVirtualTextHint = { fg = c.cyan, style = "bold" }, -- Virtual text "Hint"
-    LspDiagnosticsUnderlineHint = { fg = c.cyan, style = "undercurl", sp = c.cyan }, -- used to underline "Hint" diagnostics.
+    LspDiagnosticsDefaultHint = { fg = c.white }, -- used for "Hint" diagnostic virtual text
+    LspDiagnosticsSignHint = { fg = c.white }, -- used for "Hint" diagnostic signs in sign column
+    LspDiagnosticsFloatingHint = { fg = c.blue_hint, style = "bold" }, -- used for "Hint" diagnostic messages in the diagnostics float
+    LspDiagnosticsVirtualTextHint = { fg = c.blue_hint, style = "bold" }, -- Virtual text "Hint"
+    LspDiagnosticsUnderlineHint = { fg = c.blue_hint, style = "undercurl", sp = c.blue_hint }, -- used to underline "Hint" diagnostics.
     -- Plugins highlight groups
     -- LspTrouble
-    LspTroubleText = { fg = c.gray04 },
-    LspTroubleCount = { fg = c.magenta, bg = c.gray03 },
-    LspTroubleNormal = { fg = c.fg, bg = c.bg },
+    LspTroubleText = { fg = c.fg04 },
+    LspTroubleCount = { fg = c.yellow, bg = c.bg02 },
+    LspTroubleNormal = { fg = c.fg02, bg = c.bg02 },
     -- Diff
-    diffAdded = { fg = c.bright_green },
-    diffRemoved = { fg = c.bright_red },
-    diffChanged = { fg = c.bright_blue },
+    diffAdded = { fg = c.green },
+    diffRemoved = { fg = c.red },
+    diffChanged = { fg = c.blue },
     diffOldFile = { fg = c.gray04 },
-    diffNewFile = { fg = c.fg },
+    diffNewFile = { fg = c.fg02 },
     diffFile = { fg = c.gray05 },
-    diffLine = { fg = c.cyan },
-    diffIndexLine = { fg = c.magenta },
+    diffLine = { fg = c.white },
+    diffIndexLine = { fg = c.yellow },
     -- GitSigns
-    GitSignsAdd = { fg = c.bright_green }, -- diff mode: Added line |diff.txt|
-    GitSignsAddNr = { fg = c.bright_green }, -- diff mode: Added line |diff.txt|
-    GitSignsAddLn = { fg = c.bright_green }, -- diff mode: Added line |diff.txt|
-    GitSignsChange = { fg = c.bright_yellow }, -- diff mode: Changed line |diff.txt|
-    GitSignsChangeNr = { fg = c.bright_yellow }, -- diff mode: Changed line |diff.txt|
-    GitSignsChangeLn = { fg = c.bright_yellow }, -- diff mode: Changed line |diff.txt|
-    GitSignsDelete = { fg = c.bright_red }, -- diff mode: Deleted line |diff.txt|
-    GitSignsDeleteNr = { fg = c.bright_red }, -- diff mode: Deleted line |diff.txt|
-    GitSignsDeleteLn = { fg = c.bright_red }, -- diff mode: Deleted line |diff.txt|
+    GitSignsAdd = { fg = c.green }, -- diff mode: Added line |diff.txt|
+    GitSignsAddNr = { fg = c.green }, -- diff mode: Added line |diff.txt|
+    GitSignsAddLn = { fg = c.green }, -- diff mode: Added line |diff.txt|
+    GitSignsChange = { fg = c.yellow }, -- diff mode: Changed line |diff.txt|
+    GitSignsChangeNr = { fg = c.yellow }, -- diff mode: Changed line |diff.txt|
+    GitSignsChangeLn = { fg = c.yellow }, -- diff mode: Changed line |diff.txt|
+    GitSignsDelete = { fg = c.red }, -- diff mode: Deleted line |diff.txt|
+    GitSignsDeleteNr = { fg = c.red }, -- diff mode: Deleted line |diff.txt|
+    GitSignsDeleteLn = { fg = c.red }, -- diff mode: Deleted line |diff.txt|
     -- Telescope
     TelescopeSelectionCaret = { fg = c.blue, bg = c.gray01 },
     TelescopeBorder = { fg = c.gray05 },
@@ -304,20 +304,20 @@ local set_groups = function()
     TelescopeMatching = { fg = c.yellow },
     TelescopePromptPrefix = { fg = c.blue },
     -- NvimTree
-    NvimTreeRootFolder = { fg = c.cyan, style = "italic" },
-    NvimTreeNormal = { fg = c.fg, bg = cfg.transparent and c.none or c.bg },
-    NvimTreeImageFile = { fg = c.magenta },
+    NvimTreeRootFolder = { fg = c.fg02, style = "italic" },
+    NvimTreeNormal = { fg = c.fg02, bg = cfg.transparent and c.none or c.bg },
+    NvimTreeImageFile = { fg = c.fg02 },
     NvimTreeExecFile = { fg = c.green },
-    NvimTreeSpecialFile = { fg = c.magenta },
-    NvimTreeFolderName = { fg = c.blue },
-    NvimTreeOpenedFolderName = { fg = c.bright_blue },
-    NvimTreeOpenedFile = { fg = c.bright_blue },
-    NvimTreeEmptyFolderName = { fg = c.gray05 },
-    NvimTreeFolderIcon = { fg = c.gray07 },
-    NvimTreeIndentMarker = { fg = c.gray03 },
+    NvimTreeSpecialFile = { fg = c.fg02 },
+    NvimTreeFolderName = { fg = c.fg02 },
+    NvimTreeOpenedFolderName = { fg = c.fg02 },
+    NvimTreeOpenedFile = { fg = c.fg01 },
+    NvimTreeEmptyFolderName = { fg = c.fg05 },
+    NvimTreeFolderIcon = { fg = c.violet2 },
+    NvimTreeIndentMarker = { fg = c.bg04 },
     NvimTreeGitDirty = { fg = c.gray07 },
-    NvimTreeGitStaged = { fg = c.cyan },
-    NvimTreeGitRenamed = { fg = c.yellow },
+    NvimTreeGitStaged = { fg = c.blue },
+    NvimTreeGitRenamed = { fg = c.white },
     NvimTreeGitNew = { fg = c.green },
     NvimTreeGitDeleted = { fg = c.red },
     -- Ale-vim
@@ -331,12 +331,12 @@ local set_groups = function()
     ALEVirtualTextWarning = { fg = c.yellow },
     ALEVirtualTextInfo = { fg = c.blue },
     -- WhichKey
-    WhichKey = { fg = c.bright_cyan },
-    WhichKeyGroup = { fg = c.yellow, style = "italic" },
-    WhichKeyDesc = { fg = c.blue },
-    WhichKeySeperator = { fg = c.gray05 },
-    WhichKeyFloating = { bg = c.gray01 },
-    WhichKeyFloat = { bg = c.gray01 },
+    WhichKey = { fg = c.fg02 },
+    WhichKeyGroup = { fg = c.violet, style = "italic" },
+    WhichKeyDesc = { fg = c.fg02 },
+    WhichKeySeperator = { fg = c.fg05 },
+    WhichKeyFloating = { bg = c.fg04 },
+    WhichKeyFloat = { bg = c.fg04 },
     -- LspSaga
     LspSagaFinderSelection = { fg = c.magenta },
     LspSagaLspFinderBorder = { fg = c.gray05 },
@@ -462,7 +462,7 @@ M.colorscheme = function()
   end
 
   vim.o.termguicolors = true
-  vim.g.colors_name = "rasmus"
+  vim.g.colors_name = "tunnelvision"
 
   set_terminal_colors()
   set_groups()

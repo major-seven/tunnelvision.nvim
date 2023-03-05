@@ -2,17 +2,35 @@ local M = {}
 
 M.dark = {
   -- Basic
-  bg = "#1a1a19",
-  fg = "#d1d1d1",
-  -- Normal
+
+  -- Accents
+  violet = "#9a9acd", -- highlighting symbols (brackets, *, +, =, ...) and types
+  violet2 = "#7171b4", -- keyword values (true, false, null, ...)
+  violet3 = "#5c5ca9", -- keywords non values (println, for, if, #ifdef, ...)
   black = "#333332",
-  red = "#ff968c",
-  green = "#61957f",
-  yellow = "#ffc591",
-  blue = "#8db4d4",
+  -- red = "#c03b3b",
+  red = "#b54646",
+  green = "#407947",
+  -- yellow = "#c1a94c",
+  yellow = "#b5a258",
+  blue = "#4883bb",
+  white = "#ffffff",
   magenta = "#de9bc8",
   cyan = "#7bb099",
-  white = "#d1d1d1",
+
+  -- Backgrounds
+  bg01 = "#1d1d1d",
+  bg02 = "#262626",
+  bg03 = "#303030",
+  bg04 = "#373737",
+
+  -- Fontcolors
+  fg01 = "#bcbcbc",
+  fg02 = "#9c9c9c",
+  fg03 = "#7f7f7f",
+  fg04 = "#686868",
+  fg05 = "#525252",
+
   -- Bright
   bright_black = "#4c4c4b",
   bright_red = "#ffafa5",
@@ -30,6 +48,7 @@ M.dark = {
   gray05 = "#6a6a69",
   gray06 = "#767675",
   gray07 = "#b6b6b5",
+
   -- Special
   none = "NONE",
 }
